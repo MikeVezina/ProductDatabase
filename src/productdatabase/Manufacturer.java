@@ -70,7 +70,7 @@ public class Manufacturer implements Disposable
 	@Override
 	public String toString()
 	{
-		return "Manufacturer ID: " + this.manufacturerID + ". Manufacturer Name: " + this.manufacturerName + ". Number of Products: " + this.allProducts.size();
+		return this.manufacturerName + " (ID: " + this.manufacturerID + ")";
 	}
 
 	

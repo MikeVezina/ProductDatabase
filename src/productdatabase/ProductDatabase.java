@@ -6,6 +6,8 @@ package productdatabase;
 import java.sql.*;
 import java.util.*;
 
+import productdatabase.gui.ProductDatabaseGUI;
+
 /**
  * @author MVezina
  */
@@ -16,6 +18,8 @@ public class ProductDatabase
 	private List<Product> products;
 	private List<Retailer> retailers;
 
+	
+	private Statement stat;
 	public ProductDatabase()
 	{
 		// Initialize lists
@@ -30,36 +34,27 @@ public class ProductDatabase
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-		}
-
-		System.out.println("Manufacturers:");
-
-		// Print all manufacturers
-		for (Manufacturer m : manufacturers)
-		{
-			System.out.println(m.toString());
-		}
-
-		System.out.println();
-		System.out.println("Retailers");
-
-		// Print all Retailers
-		for (Retailer r : retailers)
-		{
-			System.out.println(r.toString());
-		}
-
-		System.out.println();
-		System.out.println("Products");
-
-		// Print all Retailers
-		for (Product p : products)
-		{
-			System.out.println(p.toString());
+			System.exit(1);
 		}
 
 	}
 
+	public ResultSet getResults(String query)
+	{
+		try
+		{
+			ResultSet rs =  stat.executeQuery(query);
+			
+			return rs;
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	/**
 	 * @author MVezina
 	 */
@@ -72,12 +67,15 @@ public class ProductDatabase
 		Connection conn = DriverManager.getConnection("jdbc:sqlite:ProductData.db");
 
 		// Create a statement from the database connection
-		Statement stat = conn.createStatement();
+		stat = conn.createStatement();
 
 		// Gather all information from the database
 		populateDatabaseLists(stat);
 		populateDatabaseLists(stat);
 	}
+	
+	
+	
 
 	/**
 	 * Populates The database lists
@@ -86,7 +84,7 @@ public class ProductDatabase
 	 */
 	public void populateDatabaseLists(Statement stat) throws Exception
 	{
-		
+
 		/* Dispose of all present lists */
 		for (Manufacturer m : manufacturers)
 		{
@@ -108,10 +106,12 @@ public class ProductDatabase
 		products.clear();
 		retailers.clear();
 
-		retrieveManufacturers(stat);
-		retrieveRetailers(stat);
-		retrieveProducts(stat);
+		retrieveAllManufacturers(stat);
+		retrieveAllRetailers(stat);
+		retrieveAllProducts(stat);
 	}
+	
+	
 
 	/**
 	 * Obtains all manufacturers from the database and adds them to the list of
@@ -120,7 +120,7 @@ public class ProductDatabase
 	 * @param stat The Statement to execute the query on
 	 * @author MVezina
 	 */
-	public void retrieveManufacturers(Statement stat) throws Exception
+	private void retrieveAllManufacturers(Statement stat) throws Exception
 	{
 		// Obtain all manufacturer information
 		String query = "SELECT * FROM manufacturers";
@@ -140,7 +140,7 @@ public class ProductDatabase
 	 * @param stat The statemenet to execute the query on
 	 * @author MVezina
 	 */
-	public void retrieveProducts(Statement stat) throws Exception
+	private void retrieveAllProducts(Statement stat) throws Exception
 	{
 		// Obtain all manufacturer information
 		String query = "SELECT * FROM products";
@@ -158,10 +158,10 @@ public class ProductDatabase
 		rs.close();
 
 		// Now we populate the products with retailer information
-		retrieveProductRetailerInformation(stat);
+		retrieveAllProductRetailerInformation(stat);
 	}
 
-	public void retrieveProductRetailerInformation(Statement stat) throws Exception
+	private void retrieveAllProductRetailerInformation(Statement stat) throws Exception
 	{
 		// Obtain all manufacturer information
 		String query = "SELECT * FROM sold_by";
@@ -188,6 +188,22 @@ public class ProductDatabase
 		rs.close();
 
 	}
+	
+	public List<Product> getAllProducts()
+	{
+		return this.products;
+	}
+	
+	public List<Manufacturer> getAllManufacturers()
+	{
+		return this.manufacturers;
+	}
+	
+	public List<Retailer> getAllRetailers()
+	{
+		return this.retailers;
+	}
+	
 
 	/**
 	 * Adds retailers in database to Retailers List
@@ -195,7 +211,7 @@ public class ProductDatabase
 	 * @param stat The statement to execute the query on
 	 * @author MVezina
 	 */
-	public void retrieveRetailers(Statement stat) throws Exception
+	private void retrieveAllRetailers(Statement stat) throws Exception
 	{
 		// Obtain all manufacturer information
 		String query = "SELECT * FROM retailers";
@@ -288,9 +304,41 @@ public class ProductDatabase
 		return getProductByID(productID, getManufacturerByID(manufacturerID));
 	}
 
-	public static void main(String[] args)
+	public void PrintAllData()
 	{
-		new ProductDatabase();
+		System.out.println("Manufacturers:");
+
+		// Print all manufacturers
+		for (Manufacturer m : manufacturers)
+		{
+			System.out.println(m.toString());
+		}
+
+		System.out.println();
+		System.out.println("Retailers");
+
+		// Print all Retailers
+		for (Retailer r : retailers)
+		{
+			System.out.println(r.toString());
+		}
+
+		System.out.println();
+		System.out.println("Products");
+
+		// Print all Retailers
+		for (Product p : products)
+		{
+			System.out.println(p.toString());
+		}
+
+	}
+
+	public static void main(String[] args) throws Exception
+	{
+		
+		
+		new ProductDatabaseGUI();
 	}
 
 }
