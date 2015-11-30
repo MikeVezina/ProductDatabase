@@ -117,7 +117,7 @@ INSERT INTO "sold_by" VALUES(1, 3, 6, 89.00, "In Stock", "http://www.amazon.ca/B
 -- Products Sold By Best Buy
 INSERT INTO "sold_by" VALUES(2, 1, 1, 1049.99, "In Stock", "http://www.bestbuy.ca/en-CA/product/apple-apple-ipad-pro-32gb-with-wi-fi-gold-ml0h2cl-a/10397272.aspx?path=680455cb8803f79979ac85aa0d750405en02", 3);
 INSERT INTO "sold_by" VALUES(2, 2, 1, 424.99, "In Stock", "http://www.bestbuy.ca/en-CA/product/apple-apple-ipad-mini-4-16gb-with-wi-fi-gold-mk6l2cl-a/10389493.aspx?path=fcd945ec1f6529ce7c320cabfe384f52en02", 5);
-INSERT INTO "sold_by" VALUES(2, 3, 1, 1049.99, "In Stock", "http://www.bestbuy.ca/en-CA/product/apple-apple-ipad-air-2-16gb-with-wi-fi-gold-mh0w2cl-a/10303902.aspx?path=73c21de05177084fa2010c02e2cddef9en02", 4.5);
+INSERT INTO "sold_by" VALUES(2, 3, 1, 519.99, "In Stock", "http://www.bestbuy.ca/en-CA/product/apple-apple-ipad-air-2-16gb-with-wi-fi-gold-mh0w2cl-a/10303902.aspx?path=73c21de05177084fa2010c02e2cddef9en02", 4.5);
 INSERT INTO "sold_by" VALUES(2, 4, 1, 349.99, "In Stock", "http://www.bestbuy.ca/en-CA/product/apple-bell-apple-iphone-6s-16gb-smartphone-space-grey-2-year-agreement/10392663.aspx?path=088e61de6e3191672146b27cfff7e993en02", 1);
 INSERT INTO "sold_by" VALUES(2, 5, 1, 529.99, "In Stock", "http://www.bestbuy.ca/en-CA/product/apple-telus-apple-iphone-6s-plus-16gb-smartphone-rose-gold-2-year-agreement-mku52vc-a/10392424.aspx?path=2025c1ca5feb8d5a61a5c2cf4e26db70en02", 5);
 INSERT INTO "sold_by" VALUES(2, 1, 2, 499.99, "In Stock", "http://www.bestbuy.ca/en-CA/product/microsoft-microsoft-surface-3-10-8-64gb-windows-10-tablet-with-quad-core-intel-processor-silver-7g5-00001/10367214.aspx?path=fe6069e0703bb73e2e0a5fc80760264aen02", 5);
