@@ -18,8 +18,10 @@ public class ProductDatabase
 	private List<Product> products;
 	private List<Retailer> retailers;
 
-	
+	private Connection conn;
 	private Statement stat;
+	
+	
 	public ProductDatabase()
 	{
 		// Initialize lists
@@ -39,6 +41,11 @@ public class ProductDatabase
 
 	}
 
+	public Connection getDatabaseConnection()
+	{
+		return this.conn;
+	}
+	
 	public ResultSet getResults(String query)
 	{
 		try
@@ -64,7 +71,7 @@ public class ProductDatabase
 		Class.forName("org.sqlite.JDBC");
 
 		// Create database connection
-		Connection conn = DriverManager.getConnection("jdbc:sqlite:ProductData.db");
+		conn = DriverManager.getConnection("jdbc:sqlite:ProductData.db");
 
 		// Create a statement from the database connection
 		stat = conn.createStatement();

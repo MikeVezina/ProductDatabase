@@ -17,7 +17,7 @@ import javax.swing.table.TableCellRenderer;
 public class ResultsTable extends JTable implements TableCellRenderer
 {
 
-	private static String[] columnData = new String[] { "Product Name", "Manufacturer", "Retailer", "Price", "Stock", "Product URL", "Release Date" };
+	private static String[] columnData = new String[] { "Product Name", "Manufacturer", "Retailer", "Price", "Stock", "URL", "Release Date", "Rating (/5)" };
 
 	protected DefaultTableModel tableModel;
 	
@@ -32,6 +32,11 @@ public class ResultsTable extends JTable implements TableCellRenderer
 		this.setShowVerticalLines(true);	
 		this.setDefaultRenderer(String.class, this);
 
+	}
+	
+	public void clear()
+	{
+		this.tableModel.setRowCount(0);
 	}
 
 	public DefaultTableModel getDefaultModel()

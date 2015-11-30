@@ -34,15 +34,15 @@ public class Retailer implements Disposable
 	private List<Product> allProducts;
 
 	private int retailerID;
-	private String name;
+	private String retailerName;
 	private String website;
 
 	public Retailer(int retailerID, String retailerName, String retailerWebsite)
 	{
 		this.allProducts = new ArrayList<>();
 		this.retailerID = retailerID;
-		this.setName(retailerName);
-		this.setWebsite(retailerWebsite);
+		this.retailerName = (retailerName);
+		this.website = (retailerWebsite);
 	}
 
 	public void addProduct(Product product)
@@ -69,17 +69,9 @@ public class Retailer implements Disposable
 		return retailerID;
 	}
 
-	public String getName()
+	public String getRetailerName()
 	{
-		return name;
-	}
-
-	public void setName(String name)
-	{
-		if (name == null)
-			return;
-
-		this.name = name;
+		return retailerName;
 	}
 
 	public String getWebsite()
@@ -87,18 +79,10 @@ public class Retailer implements Disposable
 		return website;
 	}
 
-	public void setWebsite(String website)
-	{
-		if (website == null)
-			return;
-
-		this.website = website;
-	}
-
 	@Override
 	public String toString()
 	{
-		return "Retailer ID: " + this.retailerID + ". Retailer Name: " + this.name + ". Number of Products: " + this.allProducts.size();
+		return this.retailerName + " (ID: " + this.retailerID + ")";
 	}
 
 
